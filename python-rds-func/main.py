@@ -16,10 +16,11 @@ print("DB_PASSWORD:", DB_PASSWORD)
 
 def lambda_handler(event, context):
     # import pydevd_pycharm; pydevd_pycharm.settrace('ENDAUTOFOmzDiQ4.endava.net', port=12345, stdoutToServer=True, stderrToServer=True)
-    conn = psycopg2.connect(f"host={DB_HOST} dbname=test user={DB_USER} password={DB_PASSWORD}")
+    conn = psycopg2.connect(f"host={DB_HOST} dbname=postgres user={DB_USER} password={DB_PASSWORD}")
     cur = conn.cursor()
     for record in event['Records']:
-        message = record.get('SNS', {}).get('Message')
+        message = record.get('Sns', {}).get('Message')
+        print(record)
         cur.execute("INSERT INTO messages (message) VALUES (%s)", (message, ))
     conn.commit()
     cur.close()

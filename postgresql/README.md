@@ -1,5 +1,9 @@
 To run a local Postgresql container with data persistence use:
 
+`docker compose up -d`
+
+or 
+
 `docker run -d \
 	-e POSTGRES_USER=postgres \
 	-e POSTGRES_PASSWORD=mysecretpassword \

@@ -1,11 +1,14 @@
 Some quick commands to deal with this function and localstack
 =======
 
+## 0. Create SNS topic
+`awslocal sns create-topic --name test-sns-topic`
+
 ## 1. Create the lambda function in localstack
 
 `zip -r function.zip index.js node_modules`
 
-`awslocal lambda create-function --function-name js-echo-func --runtime nodejs18.x --zip-file fileb://function.zip --handler index.handler --role arn:aws:iam::000000000000:role/lambda-role --timeout 900`
+`awslocal lambda create-function --function-name js-echo-func --runtime nodejs18.x --zip-file fileb://function.zip --handler index.handler --role arn:aws:iam::000000000000:role/lambda-role --timeout 900 --environment "Variables={SNS_TOPIC_ARN=arn:aws:sns:us-east-1:000000000000:test-sns-topic}"`
 
 
 ## 2. Update the function code

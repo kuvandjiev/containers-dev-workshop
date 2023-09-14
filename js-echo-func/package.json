@@ -1,6 +1,7 @@
 {
   "dependencies": {
-    "colors": "^1.4.0"
+    "colors": "^1.4.0",
+    "aws-sdk": "^2.1446.0"
   },
   "devDependencies": {
     "jest": "^29.6.4"

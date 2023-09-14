@@ -11,6 +11,7 @@ services:
       - POSTGRES_PASSWORD=mysecretpassword
     volumes:
       - "./dbdata:/var/lib/postgresql/data"
+      - "./db_dump.sql:/docker-entrypoint-initdb.d/db_dump.sql"
     networks:
       - localstack-network
 

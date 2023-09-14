@@ -8,3 +8,4 @@ localstack/volume/**
 postgresql/dbdata/**
 **/env/*
 python-rds-func/dist/**
+react-tic-tac-toe/build/**

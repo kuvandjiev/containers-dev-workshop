@@ -3,7 +3,10 @@ Some quick commands to deal with this function and localstack
 ## 1. Create the lambda function in localstack
 
 `
-pip install aws-psycopg2 --target dist
+rm function.zip || echo "no function.zip to delete"
+mkdir dist -p
+pip install -r requirements.txt --target dist
+pip install --platform manylinux2014_x86_64 --target=dist --implementation cp --python-version 3.11 --only-binary=:all: --upgrade psycopg2-binary
 cd dist
 zip -r $OLDPWD/function.zip .
 cd $OLDPWD
@@ -24,9 +27,6 @@ zip -g function.zip main.py
 ## 4. Create SNS topic
 `awslocal sns create-topic --name test-sns-topic`
 
-See received messages on:
-`http://localhost:4566/_aws/sqs/messages?QueueUrl=http://localhost:4566/000000000000/test-queue`
-
 
 ## 5. Triggering Lambda from SNS
 `awslocal sns subscribe --protocol lambda --topic-arn arn:aws:sns:us-east-1:000000000000:test-sns-topic --notification-endpoint arn:aws:lambda:us-east-1:000000000000:function:python-rds-func`
@@ -34,3 +34,4 @@ See received messages on:
 ## 6. Enable remote debugging
 
 LAMBDA_RUNTIME_ENVIRONMENT_TIMEOUT=900 localstack start -d
+The debugger is available at $(hostname).$(domainname) on the port configured in the PyCharm debug configuration

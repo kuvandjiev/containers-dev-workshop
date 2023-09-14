@@ -9,6 +9,15 @@ function Square({ value, onSquareClick }) {
 }
 
 function Board({ xIsNext, squares, onPlay }) {
+  function reportClick(player, i){
+    fetch(process.env.REACT_APP_ECHO_ENDPOINT, {
+      method: "POST",
+      body: JSON.stringify({
+        echo: `${player} marked square ${i}`,
+      }),
+      headers: {"Content-type": "application/json; charset=UTF-8"}
+    });
+  }
   function handleClick(i) {
     if (calculateWinner(squares) || squares[i]) {
       return;
@@ -16,8 +25,10 @@ function Board({ xIsNext, squares, onPlay }) {
     const nextSquares = squares.slice();
     if (xIsNext) {
       nextSquares[i] = 'X';
+      reportClick('X', i);
     } else {
       nextSquares[i] = 'O';
+      reportClick('O', i);
     }
     onPlay(nextSquares);
   }

@@ -5,7 +5,7 @@ Some quick commands to deal with this function and localstack
 
 `zip -r function.zip index.js node_modules`
 
-`awslocal lambda create-function --function-name js-sqs-read-func --runtime nodejs18.x --zip-file fileb://function.zip --handler index.handler --role arn:aws:iam::000000000000:role/lambda-role --timeout 900 --environment "Variables={AWS_ENDPOINT_URL=https://localhost.localstack.cloud:4566}"`
+`awslocal lambda create-function --function-name js-sqs-read-func --runtime nodejs18.x --zip-file fileb://function.zip --handler index.handler --role arn:aws:iam::000000000000:role/lambda-role --timeout 900`
 `awslocal lambda update-function-configuration --function-name js-sqs-read-func --environment "Variables={AWS_ENDPOINT_URL=https://localhost.localstack.cloud:4566}"`
 
 ## 2. Update the function code
@@ -36,6 +36,10 @@ See received messages on:
 
 `awslocal lambda create-event-source-mapping --function-name js-sqs-read-func --batch-size 1 --event-source-arn arn:aws:sqs:us-east-1:000000000000:test-queue`
 
-## 8. Enable remote debugging
+## 8. To subscribe the SQS queue to an SNS topic:
+
+`awslocal sns subscribe --protocol sqs --topic-arn arn:aws:sns:us-east-1:000000000000:test-sns-topic --notification-endpoint arn:aws:sqs:us-east-1:000000000000:test-queue`
+
+## 9. Enable remote debugging
 
 LAMBDA_RUNTIME_ENVIRONMENT_TIMEOUT=900 LAMBDA_DOCKER_FLAGS="-e NODE_OPTIONS=--inspect-brk=0.0.0.0:9229 -p 9229:9229" localstack start -d
