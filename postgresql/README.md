@@ -15,6 +15,6 @@ or
 
 `awslocal secretsmanager create-secret --name rds_password --secret-string mysecretpassword`
 
-## 2. Get secret value from secrets manager
+## 2. Get secret value from secrets manager (the arn will vary)
 
 `awslocal secretsmanager get-secret-value --secret-id arn:aws:secretsmanager:us-east-1:000000000000:secret:rds_password-EWnJTz`

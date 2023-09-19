@@ -2,7 +2,7 @@ This is the React tic-tac-toe tutorial from https://react.dev/learn/tutorial-tic
 The games is slightly modified to report each player click on the board to the echo function.
 The backend endpoint is specified by the `REACT_APP_ECHO_ENDPOINT` environmental variable.
 
-## 1. Install depedencies
+## 1. Install dependencies
 
 `npm install`
 

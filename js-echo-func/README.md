@@ -10,7 +10,6 @@ Some quick commands to deal with this function and localstack
 
 `awslocal lambda create-function --function-name js-echo-func --runtime nodejs18.x --zip-file fileb://function.zip --handler index.handler --role arn:aws:iam::000000000000:role/lambda-role --timeout 900 --environment "Variables={SNS_TOPIC_ARN=arn:aws:sns:us-east-1:000000000000:test-sns-topic}"`
 
-
 ## 2. Update the function code
 
 `awslocal lambda update-function-code --function-name js-echo-func --zip-file fileb://function.zip`

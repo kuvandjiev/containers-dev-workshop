@@ -1,12 +1,12 @@
 Some quick commands to deal with this function and localstack
 =======
 
-## 1. Create the lambda function in localstack
+## 1. Create/update the lambda function in localstack
 
 `zip -r function.zip index.js node_modules`
 
 `awslocal lambda create-function --function-name js-sqs-read-func --runtime nodejs18.x --zip-file fileb://function.zip --handler index.handler --role arn:aws:iam::000000000000:role/lambda-role --timeout 900`
-`awslocal lambda update-function-configuration --function-name js-sqs-read-func --environment "Variables={AWS_ENDPOINT_URL=https://localhost.localstack.cloud:4566}"`
+`awslocal lambda update-function-configuration --function-name js-sqs-read-func`
 
 ## 2. Update the function code
 
@@ -16,13 +16,13 @@ Some quick commands to deal with this function and localstack
 
 `awslocal lambda invoke --function-name js-sqs-read-func --cli-binary-format raw-in-base64-out --payload file://test_message.json output.txt`
 
-## 4. Create SQS
-
-`awslocal sqs create-queue --queue-name test-queue`
-
-## 5. Create DnynamoDB table
+## 4. Create DnynamoDB table
 
 `awslocal dynamodb create-table --table-name message-history --key-schema AttributeName=id,KeyType=HASH --attribute-definitions AttributeName=id,AttributeType=S --billing-mode PAY_PER_REQUEST`
+
+## 5. Create SQS
+
+`awslocal sqs create-queue --queue-name test-queue`
 
 ## 6. Send message to SQS
 
