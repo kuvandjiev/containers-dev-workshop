@@ -1,0 +1,11 @@
+.idea/
+.dccache
+*/node_modules/**
+function.zip
+*/coverage/**
+output.txt
+localstack/volume/**
+postgresql/dbdata/**
+**/env/*
+python-rds-func/dist/**
+react-tic-tac-toe/build/**

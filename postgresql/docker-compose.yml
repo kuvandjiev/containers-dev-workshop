@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  postgres:
+    container_name: "postgres"
+    image: postgres
+    ports:
+      - "127.0.0.1:5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=mysecretpassword
+    volumes:
+      - "./dbdata:/var/lib/postgresql/data"
+      - "./db_dump.sql:/docker-entrypoint-initdb.d/db_dump.sql"
+    networks:
+      - localstack-network
+
+networks:
+  localstack-network:
+    name: localstack-network
+    external: true

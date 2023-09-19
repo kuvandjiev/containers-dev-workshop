@@ -1,0 +1,2 @@
+boto3
+pydevd_pycharm
