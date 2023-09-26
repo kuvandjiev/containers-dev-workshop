@@ -2,6 +2,8 @@
 .dccache
 */node_modules/**
 function.zip
+echo_function.zip
+sqsreader_function.zip
 */coverage/**
 output.txt
 localstack/volume/**

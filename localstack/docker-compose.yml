@@ -11,7 +11,7 @@ services:
       - DOCKER_HOST=unix:///var/run/docker.sock
       - LAMBDA_RUNTIME_ENVIRONMENT_TIMEOUT=900
       - LAMBDA_DOCKER_NETWORK=localstack-network
-      - LAMBDA_DOCKER_FLAGS=--publish=9229:9229 --env=NODE_OPTIONS=--inspect-brk=0.0.0.0:9229  # uncomment to allow nodejs remote debugging
+      #- LAMBDA_DOCKER_FLAGS=--publish=9229:9229 --env=NODE_OPTIONS=--inspect-brk=0.0.0.0:9229  # uncomment to allow nodejs remote debugging
       - EXTRA_CORS_ALLOWED_ORIGINS=http://localhost:3000
     volumes:
       - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
